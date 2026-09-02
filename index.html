@@ -41,6 +41,7 @@
 
   --wine:          #7A1B32;
   --red:           #C8102E;   /* the ties, and the ribbon under the crest */
+  --red-deep:      #9E0C24;
   --sky:           #3E6FA8;   /* the globe and summit in the crest */
 
   --cream:         #FAF6EE;
@@ -170,7 +171,7 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
 /* A gold hairline that reads as a crest divider, used sparingly */
 .rule-gold {
   width: 64px; height: 3px;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 100%);
+  background: linear-gradient(90deg, var(--gold) 0%, var(--red) 100%);
   border: 0; margin: 0 0 1.5rem;
 }
 .band-maroon .rule-gold { background: var(--gold-bright); }
@@ -194,8 +195,8 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
   transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
-.btn--primary { background: var(--maroon); color: var(--paper); border-color: var(--maroon); }
-.btn--primary:hover { background: var(--maroon-deep); border-color: var(--maroon-deep); color: var(--paper); }
+.btn--primary { background: var(--red); color: var(--paper); border-color: var(--red); }
+.btn--primary:hover { background: var(--red-deep); border-color: var(--red-deep); color: var(--paper); }
 
 .btn--ghost { background: transparent; color: var(--maroon); border-color: var(--maroon); }
 .btn--ghost:hover { background: var(--maroon); color: var(--paper); }
@@ -338,7 +339,7 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
   }
   .site-nav ul { display: flex; align-items: center; gap: 1.6rem; }
   .site-nav a { padding: 0; border-bottom: 0; font-size: 0.92rem; white-space: nowrap; }
-  .site-nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--gold); }
+  .site-nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--red); }
   .site-nav .btn {
     flex: 0 0 auto;
     width: auto;
@@ -386,7 +387,7 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
 .hero::after {
   content: "";
   position: absolute; left: 0; right: 0; bottom: 0; height: 5px; z-index: 2;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 45%, var(--wine) 100%);
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 45%, var(--red) 100%);
 }
 
 /* On a narrow screen the angled wash covers the whole photo, so switch to a
@@ -524,7 +525,7 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
 .stage-body .more {
   margin-top: 1.1rem; font-size: 0.95rem; font-weight: 500;
   text-decoration: none; color: var(--navy);
-  border-bottom: 1px solid var(--gold); align-self: flex-start;
+  border-bottom: 1px solid var(--red); align-self: flex-start;
   padding-bottom: 2px;
 }
 .stage-body .more:hover { color: var(--gold); }
