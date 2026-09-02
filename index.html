@@ -40,6 +40,8 @@
   --gold-pale:     #F3E7C4;
 
   --wine:          #7A1B32;
+  --red:           #C8102E;   /* the ties, and the ribbon under the crest */
+  --sky:           #3E6FA8;   /* the globe and summit in the crest */
 
   --cream:         #FAF6EE;
   --paper:         #FFFDF8;
@@ -62,6 +64,7 @@
   --section-y: 4.5rem;
 
   --shadow: 0 18px 44px -28px rgba(13, 23, 48, 0.5);
+  --shadow-lift: 0 28px 60px -30px rgba(13, 23, 48, 0.42);
 }
 
 @media (min-width: 800px) {
@@ -852,6 +855,141 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
 }
 
 
+/* =========================================================================
+   Announcement bar
+   ========================================================================= */
+
+.announce {
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 50%, var(--gold) 100%);
+  color: #241A05;
+  font-size: 0.88rem;
+  text-align: center;
+}
+.announce .wrap {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.9rem; flex-wrap: wrap;
+  padding-block: 0.6rem;
+}
+.announce strong { font-weight: 600; }
+.announce a {
+  color: var(--navy-deep); font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(13,23,48,0.4);
+  white-space: nowrap;
+}
+.announce a:hover { border-bottom-color: var(--navy-deep); color: var(--navy-deep); }
+@media (max-width: 560px) { .announce { font-size: 0.8rem; } }
+
+/* =========================================================================
+   Full-bleed photographic band
+   ========================================================================= */
+
+.band-photo {
+  position: relative;
+  color: var(--paper);
+  overflow: hidden;
+  padding-block: clamp(4.5rem, 12vw, 8rem);
+  text-align: center;
+}
+.band-photo .bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center 40%;
+  z-index: 0;
+}
+.band-photo::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg,
+    rgba(13,23,48,0.9) 0%, rgba(13,23,48,0.78) 50%, rgba(13,23,48,0.9) 100%);
+}
+.band-photo .wrap { position: relative; z-index: 2; }
+.band-photo h2 { color: var(--paper); }
+.band-photo .statement {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 4.6vw, 2.9rem);
+  line-height: 1.28;
+  max-width: 20ch;
+  margin: 0 auto 1.5rem;
+  color: var(--paper);
+}
+.band-photo .statement em { font-style: italic; color: var(--gold-bright); }
+.band-photo .attrib {
+  font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255,253,248,0.72);
+}
+
+/* =========================================================================
+   Values framework
+   ========================================================================= */
+
+.values { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+@media (min-width: 620px) { .values { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 940px) { .values { grid-template-columns: repeat(3, 1fr); } }
+
+.value {
+  background: var(--paper);
+  padding: 2.1rem 1.7rem 2.3rem;
+  position: relative;
+  transition: background-color 0.25s ease;
+}
+.value:hover { background: var(--navy-tint); }
+.value .num {
+  font-family: var(--display); font-style: italic;
+  font-size: 1.5rem; color: var(--gold);
+  display: block; margin-bottom: 0.7rem;
+}
+.value h3 { font-size: 1.22rem; margin-bottom: 0.45rem; }
+.value p { color: var(--muted); font-size: 0.97rem; margin: 0; }
+.value::after {
+  content: ""; position: absolute; left: 0; top: 0; width: 3px; height: 0;
+  background: var(--red); transition: height 0.3s ease;
+}
+.value:hover::after { height: 100%; }
+
+/* =========================================================================
+   School anthem
+   ========================================================================= */
+
+.anthem {
+  background: var(--navy);
+  color: var(--paper);
+  border-left: 4px solid var(--gold);
+  padding: 2.5rem 2rem;
+}
+.anthem h3 { color: var(--gold-bright); font-size: 1.05rem;
+  font-family: var(--body); letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 500; margin-bottom: 1.5rem; }
+.anthem p {
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  line-height: 1.75;
+  color: rgba(255,253,248,0.94);
+  max-width: 40ch;
+}
+.anthem p + p { margin-top: 1.3rem; }
+
+/* =========================================================================
+   Scroll reveal
+   ========================================================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s cubic-bezier(0.2,0.7,0.3,1),
+                transform 0.7s cubic-bezier(0.2,0.7,0.3,1);
+  }
+  .reveal.shown { opacity: 1; transform: none; }
+  .reveal-stagger > * { transition-delay: var(--d, 0ms); }
+}
+
+/* red as a deliberate accent, not a wash */
+.card--media img { border-bottom: 3px solid var(--red); }
+.lead-media { border-bottom: 3px solid var(--gold); }
+.fact { border-top: 2px solid transparent; transition: border-color 0.25s ease; }
+.fact:hover { border-top-color: var(--gold-bright); }
+
+
 /* ------------------------------------------------ crest, embedded once */
 .crest-art {
   background-image: url(assets/img/crest.png);
@@ -864,6 +1002,8 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
   margin-inline: auto;
 }
 .hero-photo { background-image: url(assets/img/gallery/resumption-day-assembly.webp); }
+.band-photo .bg.bg--basic { background-image: url(assets/img/gallery/basic-school-group.webp); }
+.band-photo .bg.bg--college { background-image: url(assets/img/gallery/college-students-group.webp); background-position: center 30%; }
 
 /* .split .figure sets a `background` shorthand, which outranks a bare
    .campus-photo rule and blanks the image — hence the extra specificity. */
@@ -915,6 +1055,13 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announce">
+  <div class="wrap">
+    <span><strong>Admissions open</strong> for the 2026/2027 session</span>
+    <a href="#admissions" data-anchor="apply">Enquire now &rarr;</a>
+  </div>
+</div>
 
 <div class="topbar">
   <div class="wrap">
@@ -988,7 +1135,7 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
       <p>The shield on our gate is quartered for a reason. Each quarter is a promise we make to every child
         who walks through it.</p>
     </div>
-    <div class="quarters">
+    <div class="quarters reveal reveal-stagger">
   <article class="quarter">
     <div class="mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M13.4 3h5.2v6.4H25v5.2h-6.4V29h-5.2V14.6H7V9.4h6.4V3z" fill="#A8842A"/></svg></div>
     <h3>Faith and character</h3>
@@ -1023,9 +1170,9 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
         without ever changing schools.</p>
     </div>
 
-    <div class="continuum">
+    <div class="continuum reveal reveal-stagger">
       <article class="stage">
-        <div class="stage-photo" style="background-image:url(assets/img/gallery/nursery-back-to-school.webp); background-position:center 52%" role="img" aria-label="Two nursery pupils by the Back to School board"></div>
+        <div class="stage-photo" style="background-image:url(assets/img/gallery/nursery-pupils-outdoors.webp)" role="img" aria-label="Two nursery pupils on the school grounds"></div>
         <div class="stage-body">
           <span class="step">Stage one</span>
           <h3>Creche &amp; Nursery</h3>
@@ -1063,10 +1210,18 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
   </div>
 </section>
 
+<section class="band-photo">
+  <div class="bg bg--college" aria-hidden="true"></div>
+  <div class="wrap wrap--narrow">
+    <p class="statement">A child can arrive at eighteen months and leave us <em>ready for university</em>.</p>
+    <p class="attrib">Creche &middot; Basic School &middot; College</p>
+  </div>
+</section>
+
 <section class="band-maroon tight">
   <div class="wrap">
     <!-- EDIT ME: confirm these figures with the school before going live. -->
-    <div class="facts">
+    <div class="facts reveal reveal-stagger">
       <div class="fact"><span class="n">2020</span><span class="l">Year we opened</span></div>
       <div class="fact"><span class="n">3</span><span class="l">Stages, one campus</span></div>
       <div class="fact"><span class="n">24/7</span><span class="l">CCTV on site</span></div>
@@ -1105,7 +1260,7 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
       <p>Term dates, results, competitions and everything happening on campus.</p>
     </div>
     <!-- EDIT ME: replace with real posts. Keep three on the homepage. -->
-    <div class="grid grid--3">
+    <div class="grid grid--3 reveal reveal-stagger">
       <article class="card">
         <p class="meta">Admissions</p>
         <h3>Applications open for the new session</h3>
@@ -1167,17 +1322,18 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
 
 <section class="band-cream">
   <div class="wrap">
-    <div class="grid grid--2">
+    <div class="grid grid--2 reveal reveal-stagger">
       <article class="card">
         <h3>Our mission</h3>
-        <p>To provide a holistic education that fosters intellectual curiosity, spiritual growth and moral
-          integrity, equipping students with the knowledge, skills and values they need to excel in their chosen
-          paths and make a positive difference in the world.</p>
+        <p>To provide a nurturing and stimulating learning environment that inspires academic excellence,
+          builds strong moral values, develops creative and critical thinkers, and equips learners to become
+          godly, responsible and impactful leaders in a dynamic world.</p>
       </article>
       <article class="card">
         <h3>Our vision</h3>
-        <p>To be a leading international school community, transforming lives through academic excellence,
-          spiritual growth and character development, producing future leaders who impact the world for good.</p>
+        <p>To raise globally minded, confident and compassionate leaders who excel academically, demonstrate
+          strong character, embrace innovation, and create a lasting positive impact in their communities and
+          the world.</p>
       </article>
     </div>
   </div>
@@ -1190,7 +1346,7 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
       <h2>What the crest means</h2>
       <p>The quartered shield rests on an open book. Each quarter names something we are accountable for.</p>
     </div>
-    <div class="quarters">
+    <div class="quarters reveal reveal-stagger">
   <article class="quarter">
     <div class="mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M13.4 3h5.2v6.4H25v5.2h-6.4V29h-5.2V14.6H7V9.4h6.4V3z" fill="#A8842A"/></svg></div>
     <h3>Faith and character</h3>
@@ -1216,7 +1372,62 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
   </div>
 </section>
 
+<section class="band-photo">
+  <div class="bg bg--basic" aria-hidden="true"></div>
+  <div class="wrap wrap--narrow">
+    <p class="statement">Excellence, character, leadership &mdash; <em>building a lasting legacy</em> in all we do.</p>
+    <p class="attrib">From the school anthem</p>
+  </div>
+</section>
+
+<section class="band-paper">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <hr class="rule-gold">
+      <h2>Our core values</h2>
+      <p>Six commitments the school measures itself against, in and out of the classroom.</p>
+    </div>
+    <div class="values reveal reveal-stagger">
+      <article class="value"><span class="num">01</span><h3>Excellence</h3>
+        <p>Doing ordinary work to an uncommon standard, in the classroom and outside it.</p></article>
+      <article class="value"><span class="num">02</span><h3>Integrity</h3>
+        <p>Honesty when it costs something. Character is what holds when nobody is checking.</p></article>
+      <article class="value"><span class="num">03</span><h3>Discipline</h3>
+        <p>The habits that turn ability into achievement, taught patiently and expected consistently.</p></article>
+      <article class="value"><span class="num">04</span><h3>Respect</h3>
+        <p>For teachers, for one another, and for every family that walks through our gate.</p></article>
+      <article class="value"><span class="num">05</span><h3>Leadership</h3>
+        <p>Responsibility given early, so pupils learn to carry it before they are asked to.</p></article>
+      <article class="value"><span class="num">06</span><h3>Legacy</h3>
+        <p>Measuring ourselves by who our pupils become, long after they have left us.</p></article>
+    </div>
+  </div>
+</section>
+
 <section class="band-cream">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <hr class="rule-gold">
+        <h2>Our school anthem</h2>
+        <p>Sung at assembly and at every ceremony, it is the shortest statement of what the school is for.</p>
+      </div>
+      <div class="anthem reveal">
+        <h3>Covenant Treasures</h3>
+        <p>Covenant Treasures, we proudly stand,<br>
+          United in wisdom, heart and hand.<br>
+          With truth and excellence, we lead the way,<br>
+          Building our future every day.</p>
+        <p>Covenant Treasures, our school, our pride,<br>
+          With courage and faith, we rise worldwide.<br>
+          Excellence, Character, Leadership too,<br>
+          Building a lasting legacy in all we do!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-paper">
   <div class="wrap">
     <div class="section-head">
       <hr class="rule-gold">
@@ -1224,7 +1435,7 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
       <p>The people responsible for the school day to day.</p>
     </div>
     <!-- EDIT ME: real names, roles, photographs and a short line each. -->
-    <div class="grid grid--3">
+    <div class="grid grid--3 reveal reveal-stagger">
       <article class="card"><p class="meta">Proprietor</p><h3>Name to confirm</h3><p>A short line on their background and what they set out to build.</p></article>
       <article class="card"><p class="meta">Head of school</p><h3>Name to confirm</h3><p>A short line on their teaching background and years in education.</p></article>
       <article class="card"><p class="meta">Head of academics</p><h3>Name to confirm</h3><p>A short line on curriculum, standards and staff development.</p></article>
@@ -1590,7 +1801,7 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
 
 <section class="band-paper">
   <div class="wrap">
-    <article class="lead-story">
+    <article class="lead-story reveal">
       <div class="lead-media">
         <img src="assets/img/gallery/valedictory-2026-flyer.webp"
              alt="Notice for the 2026 Valedictory Service and Graduation Ceremony"
@@ -1616,7 +1827,17 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
       <hr class="rule-gold">
       <h2>More from the school</h2>
     </div>
-    <div class="grid grid--3">
+    <div class="grid grid--3 reveal reveal-stagger">
+      <article class="card card--media">
+        <img src="assets/img/gallery/character-parade-2026.webp"
+             alt="Basic Two pupils in costume for Character Parade Roleplay Day" width="1280" height="960" loading="lazy" decoding="async">
+        <div class="card-body">
+          <p class="meta">15 May 2026 &middot; Basic Two</p>
+          <h3>Character Parade and Roleplay Day</h3>
+          <p>Doctors, pilots, lawyers, chefs and engineers filled the steps as Basic Two dressed as what they
+            hope to become.</p>
+        </div>
+      </article>
       <article class="card card--media">
         <img src="assets/img/gallery/valedictory-class-of-2026.webp"
              alt="The Class of 2026 graduands" width="1280" height="853" loading="lazy" decoding="async">
@@ -1665,6 +1886,9 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
     <!-- To add a photo: run optimize-gallery.py, then paste the <figure> line it
          prints anywhere in this list. Newest first reads best. -->
     <div class="gallery">
+      <figure><img src="assets/img/gallery/character-parade-2026.webp" alt="Basic Two pupils dressed as doctors, pilots, lawyers and chefs for Character Parade Roleplay Day" width="1280" height="960" loading="lazy" decoding="async"></figure>
+      <figure><img src="assets/img/gallery/basic-school-group.webp" alt="Basic school pupils gathered on the school steps" width="1280" height="960" loading="lazy" decoding="async"></figure>
+      <figure><img src="assets/img/gallery/college-students-group.webp" alt="College students of Covenant Treasures International School" width="960" height="1280" loading="lazy" decoding="async"></figure>
       <figure><img src="assets/img/gallery/graduate-class-of-2026.webp" alt="A graduating student of the Class of 2026 in cap and gown" width="720" height="898" loading="lazy" decoding="async"></figure>
       <figure><img src="assets/img/gallery/valedictory-class-of-2026.webp" alt="The Class of 2026 graduands of Covenant Treasures International School" width="1280" height="853" loading="lazy" decoding="async"></figure>
       <figure><img src="assets/img/gallery/resumption-day-assembly.webp" alt="Pupils gathered for resumption day at the school entrance" width="1400" height="1050" loading="lazy" decoding="async"></figure>
@@ -1913,6 +2137,60 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
     });
   }
 
+  /* ----------------------------------------------------- scroll reveal */
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var targets = document.querySelectorAll(".reveal");
+
+  var io;
+  if (reduced || !("IntersectionObserver" in window)) {
+    targets.forEach(function (el) { el.classList.add("shown"); });
+  } else {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("shown");
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+
+    targets.forEach(function (el) { io.observe(el); });
+
+    /* stagger children so grids arrive in sequence rather than all at once */
+    document.querySelectorAll(".reveal-stagger").forEach(function (group) {
+      Array.prototype.forEach.call(group.children, function (child, i) {
+        child.style.setProperty("--d", (i * 90) + "ms");
+      });
+    });
+  }
+
+  /* Reveal elements on an inactive page are display:none, so the observer
+     records them as not intersecting and never fires again once the page is
+     shown. Re-observing forces a fresh evaluation. */
+  window.addEventListener("ctis:pageshown", function (e) {
+    var page = e.detail;
+    if (!page) return;
+
+    var pending = page.querySelectorAll(".reveal:not(.shown)");
+    if (reduced || !("IntersectionObserver" in window)) {
+      pending.forEach(function (el) { el.classList.add("shown"); });
+      return;
+    }
+    requestAnimationFrame(function () {
+      pending.forEach(function (el) { io.unobserve(el); io.observe(el); });
+    });
+  });
+
+  /* Belt and braces: hidden content is far worse than a missed animation, so
+     anything still unrevealed after a few seconds is shown regardless. */
+  window.setInterval(function () {
+    document.querySelectorAll(".reveal:not(.shown)").forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.width || r.height) {
+        if (r.top < window.innerHeight * 1.2) el.classList.add("shown");
+      }
+    });
+  }, 1200);
+
   /* ---------------------------------------------------------------- year */
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
@@ -1994,6 +2272,8 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
     if (push && location.hash !== "#" + slug) {
       history.pushState(null, "", "#" + slug);
     }
+
+    window.dispatchEvent(new CustomEvent("ctis:pageshown", { detail: target }));
 
     var el = anchor && document.getElementById(anchor);
     if (el) {
