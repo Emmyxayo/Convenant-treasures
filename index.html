@@ -770,6 +770,10 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
 .card--media { padding: 0; display: flex; flex-direction: column; overflow: hidden; }
 .card--media img { width: 100%; height: 190px; object-fit: cover; display: block; }
 .card .card-body { padding: 1.6rem 1.5rem; }
+
+/* staff portraits are 4:5 and want more height than a news thumbnail */
+.card--media.staff img { height: 320px; object-position: center 22%; border-bottom-color: var(--gold); }
+.card--media.staff .meta { color: var(--red); }
 .card--media .card-body { flex: 1; }
 
 /* ------------------------------------------------------------------- CTA */
@@ -990,50 +994,6 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
 .fact { border-top: 2px solid transparent; transition: border-color 0.25s ease; }
 .fact:hover { border-top-color: var(--gold-bright); }
 
-
-/* ------------------------------------------------ crest, embedded once */
-.crest-art {
-  background-image: url(assets/img/crest.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  aspect-ratio: 1;
-  max-width: 340px;
-  margin-inline: auto;
-}
-.hero-photo { background-image: url(assets/img/gallery/resumption-day-assembly.webp); }
-.band-photo .bg.bg--basic { background-image: url(assets/img/gallery/basic-school-group.webp); }
-.band-photo .bg.bg--college { background-image: url(assets/img/gallery/college-students-group.webp); background-position: center 30%; }
-
-/* .split .figure sets a `background` shorthand, which outranks a bare
-   .campus-photo rule and blanks the image — hence the extra specificity. */
-.split .figure.campus-photo {
-  background-image: url(assets/img/campus.webp);
-  background-size: cover;
-  background-position: center 62%;
-  background-repeat: no-repeat;
-  aspect-ratio: 3 / 2;
-}
-
-.hero-crest.crest-art {
-  width: min(380px, 30vw);
-  max-width: none;
-  margin: 0;
-}
-
-/* .page is a <section>, so it would inherit the global section padding */
-.page { padding-block: 0; }
-
-/* the sticky header would otherwise cover whatever we scroll to */
-.page, .page [id] { scroll-margin-top: 96px; }
-
-/* ---------------------------------------------------- single-file router */
-/* Without JavaScript every page is simply stacked and readable. */
-.js .page { display: none; }
-.js .page.is-active { display: block; }
-.no-js .page + .page { border-top: 6px solid var(--gold); }
-
 /* =========================================================================
    Mobile refinements
    Most visitors arrive on a phone, so the small screen gets its own pass
@@ -1099,6 +1059,50 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
   .brand-name { font-size: 0.86rem; }
   .brand img { width: 34px; height: 34px; }
 }
+
+
+/* ------------------------------------------------ crest, embedded once */
+.crest-art {
+  background-image: url(assets/img/crest.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 340px;
+  margin-inline: auto;
+}
+.hero-photo { background-image: url(assets/img/gallery/resumption-day-assembly.webp); }
+.band-photo .bg.bg--basic { background-image: url(assets/img/gallery/basic-school-group.webp); }
+.band-photo .bg.bg--college { background-image: url(assets/img/gallery/college-students-group.webp); background-position: center 30%; }
+
+/* .split .figure sets a `background` shorthand, which outranks a bare
+   .campus-photo rule and blanks the image — hence the extra specificity. */
+.split .figure.campus-photo {
+  background-image: url(assets/img/campus.webp);
+  background-size: cover;
+  background-position: center 62%;
+  background-repeat: no-repeat;
+  aspect-ratio: 3 / 2;
+}
+
+.hero-crest.crest-art {
+  width: min(380px, 30vw);
+  max-width: none;
+  margin: 0;
+}
+
+/* .page is a <section>, so it would inherit the global section padding */
+.page { padding-block: 0; }
+
+/* the sticky header would otherwise cover whatever we scroll to */
+.page, .page [id] { scroll-margin-top: 96px; }
+
+/* ---------------------------------------------------- single-file router */
+/* Without JavaScript every page is simply stacked and readable. */
+.js .page { display: none; }
+.js .page.is-active { display: block; }
+.no-js .page + .page { border-top: 6px solid var(--gold); }
 
 </style>
 <script type="application/ld+json">
@@ -1501,11 +1505,38 @@ p { margin: 0 0 1.15em; max-width: 68ch; }
       <h2>Leadership</h2>
       <p>The people responsible for the school day to day.</p>
     </div>
-    <!-- EDIT ME: real names, roles, photographs and a short line each. -->
     <div class="grid grid--3 reveal reveal-stagger">
-      <article class="card"><p class="meta">Proprietor</p><h3>Name to confirm</h3><p>A short line on their background and what they set out to build.</p></article>
-      <article class="card"><p class="meta">Head of school</p><h3>Name to confirm</h3><p>A short line on their teaching background and years in education.</p></article>
-      <article class="card"><p class="meta">Head of academics</p><h3>Name to confirm</h3><p>A short line on curriculum, standards and staff development.</p></article>
+      <article class="card card--media staff">
+        <img src="assets/img/staff/proprietress.webp" alt="Moyosore Somide, Proprietress"
+             width="800" height="1000" loading="lazy" decoding="async">
+        <div class="card-body">
+          <p class="meta">Proprietress</p>
+          <h3>Moyosore Somide</h3>
+          <p>Carries overall responsibility for the school &mdash; its direction, its standards, and the tone
+            set from the top. Questions that need a decision rather than an answer come to her.</p>
+        </div>
+      </article>
+      <article class="card card--media staff">
+        <img src="assets/img/staff/head-teacher.webp" alt="The Head Teacher and Head of Academics"
+             width="800" height="1000" loading="lazy" decoding="async">
+        <div class="card-body">
+          <p class="meta">Academics</p>
+          <h3>Head Teacher &amp; Head of Academics</h3>
+          <p>Runs the school day and owns what happens in the classroom: the curriculum across all three
+            stages, examination preparation, and the teaching staff. The person to speak to about how your
+            child is getting on.</p>
+        </div>
+      </article>
+      <article class="card card--media staff">
+        <img src="assets/img/staff/secretary.webp" alt="The School Secretary"
+             width="800" height="1000" loading="lazy" decoding="async">
+        <div class="card-body">
+          <p class="meta">School office</p>
+          <h3>School Secretary</h3>
+          <p>First point of contact for the school. Handles admissions enquiries, application forms, records
+            and fee schedules, and will point you to the right person for anything else.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
